@@ -1,0 +1,345 @@
+# TAREAS_INTRO
+Ejercicio 1. 
+
+import java.util.Scanner;
+
+public class Main
+{
+
+	public static void main(String[] args) {
+
+		System.out.println("Hello World");
+
+	int i = 1;
+
+	int x = 0;
+		
+	int res = 1;
+		
+	
+	Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingresa un número entero: ");
+ 
+       	x = scanner.nextInt();
+
+	System.out.println(res);
+
+        
+        while (i <= x){
+
+        if(i % 2 == 0){
+  
+              res = res - 2;
+  
+          }
+	else{
+              
+  		res = res + 4;
+ 
+           }            
+     
+   System.out.println(res);
+  
+      i++;
+      
+  }
+	    
+
+}
+}
+
+
+Ejercicio 2.
+
+public class ejercicio 2 {
+   
+  public static void main(String[] args) {
+
+         Scanner scanner = new Scanner(System.in); 
+
+        
+       
+ 
+       System.out.print("Ingresa N: "); 
+
+        int N = scanner.nextInt();
+    
+     
+ int[] secuencia = new int[N]; 
+        
+   
+           secuencia[0] = 1;
+ 
+       if (N > 1) secuencia[1] = 1;
+ 
+  
+      if (N > 2) secuencia[2] = 1;
+ 
+
+  
+ for (int i = 3; i < N; i++) {
+ 
+           secuencia[i] = secuencia[i-2] + secuencia[i-1];
+   
+      }
+
+        
+// Imprimir la secuencia generada
+       
+ for (int i = 0; i < N; i++) {
+            
+System.out.print(secuencia[i] + " ");
+ // Imprimir cada término seguido de un espacio
+
+        }
+        
+       
+ // Cerrar el objeto Scanner (libera recursos del sistema)
+   
+     scanner.close(); 
+
+    }
+
+}
+
+
+Ejercicio 3
+
+public class Ejercicio 3 { 
+
+public static void main(String[] args) { 
+
+Scanner scanner = new Scanner(System.in);
+        
+        
+System.out.print("Ingresa N: ");
+       
+ int N = scanner.nextInt(); 
+
+       
+ int[] secuencia = new int[N]; 
+        
+        
+ secuencia[0] = 2;        
+ 	if (N > 1) secuencia[1] = 1;       
+ 	if (N > 2) secuencia[2] = 4;       
+       
+ for (int i = 3; i < N; i++) {
+            
+	if (i % 2 == 0) {
+               
+ 	secuencia[i] = secuencia[i - 2] + 3; 
+       
+ } 
+	else {
+               
+ 	secuencia[i] = secuencia[i - 2] + 2; 
+         
+   }
+       
+ }
+
+       
+       
+ for (int i = 0; i < N; i++) {
+            
+System.out.print(secuencia[i] + " ");
+       
+ }
+        
+        
+scanner.close();
+    
+}
+
+}
+
+
+Ejercicio 4
+
+public class Ejercicio 4 {
+    
+public static void main(String[] args) {
+       
+ Scanner scanner = new Scanner(System.in);
+
+       
+ System.out.print("Ingresa N: ");
+        
+	int N = scanner.nextInt();
+
+                
+	char[] v = {'a', 'e', 'i', 'o', 'u'};
+        
+	char[] c = {'l', 't', 'n', 'm', 'p', 'r', 's'};
+        
+        
+  	int num_v = v.length;
+       
+ 	int num_c = c.length;
+
+
+               
+		for (int i = 0; i < N; i++) {
+            
+	int cIndex = i % num_c;
+            
+	int vIndex = i % num_v;
+  
+          
+            
+System.out.print(c[cIndex] + "" + v[vIndex] + c[cIndex] + " ");
+       
+ }
+
+        
+scanner.close();
+   
+ }
+
+}
+
+Ejercicio 5
+
+public class Ejercicio 5 {
+    
+public static void main(String[] args) {
+        
+Scanner scanner = new Scanner(System.in);
+
+        
+System.out.print("Ingresa el N: ");
+        
+int N = scanner.nextInt();
+
+        
+char[] secuencia = {'a', 'e', 'i', '1', '2', '3', '4'};
+        
+        
+
+        
+	for (int i = 0; i < N; i++) {
+            
+System.out.print(secuencia[i % secuencia.length] + " ");
+       
+ }
+
+        
+scanner.close();
+    
+}
+
+}
+
+Ejercicio 6
+
+public class Ejercicio 6 {
+    
+public static void main(String[] args) {
+        
+Scanner scanner = new Scanner(System.in);
+
+        
+System.out.print("Ingresa N: ");
+ 
+       
+	int N = scanner.nextInt();
+
+        
+	int a = 9, b = 5; 
+ 
+       
+System.out.print(a + " " + b + " ");
+
+        
+	for (int i = 2; i < N; i++) {
+ 
+           
+		int S = a + b;  
+           
+System.out.print(S + " ");
+            
+a = b;
+           
+b = S;
+       
+ }
+
+       
+ scanner.close();
+   
+ }
+
+}
+
+
+Ejercicio 7
+
+public class Secuencia7 {
+     
+public static void main(String[] args) {
+        
+Scanner scanner = new Scanner(System.in);
+
+        
+System.out.print("Ingresa N: ");
+        
+int N = scanner.nextInt();
+
+        
+int[] secuencia = {251, 152, 252, 352, 254, 452, 255, 552}; // Términos fijos
+
+        
+for (int i = 0; i < N; i++) {
+            
+System.out.print(secuencia[i % secuencia.length] + " ");
+       
+ }
+
+        
+scanner.close();
+   
+ }
+
+}
+
+
+Ejercicio 8
+
+public class Ejercicio 8 {
+    
+public static void main(String[] args) {
+        
+Scanner scanner = new Scanner(System.in);
+
+        
+System.out.print("Ingresa N: ");
+       
+int N = scanner.nextInt();
+
+        
+int a = 1, b = 1, c = 2; 
+        
+System.out.print(a + " " + b + " " + c + " ");
+
+        
+	for (int i = 3; i < N; i++) {
+            
+		int S = a + b + c;            
+System.out.print(S + " ");
+            
+	a = b;
+           
+ 	b = c;
+            
+	c = S;
+       
+ }
+
+        
+scanner.close();
+   
+ }
+
+}
