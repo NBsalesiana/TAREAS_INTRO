@@ -1,0 +1,866 @@
+Ejercicio 1
+
+// Definir variables
+costo_fijo_diario = 800  
+costo_variable_por_sombrero = 20  
+
+//Definimos el costo por sombrero
+costo_maximo_por_sombrero = 25  
+
+// Calculamos el costo fijo mensual, asumiendo un mes de 30 días
+costo_fijo_mensual = costo_fijo_diario * 30
+
+// Inicializamos la cantidad de sombreros a producir
+cantidad_sombreros = 1  //Empezamos con 1 sombrero para iterar hasta cumplir la condición
+
+// Usamos un bucle para encontrar la cantidad mínima de sombreros para cumplir la condición
+
+while True:
+    // Calculamos el costo total de producción para la cantidad actual de sombreros
+    costo_total = costo_fijo_mensual + (costo_variable_por_sombrero * cantidad_sombreros)
+    
+    // Calcular el costo por sombrero
+    costo_por_sombrero = costo_total / cantidad_sombreros
+    
+    // Verificamos si el costo por sombrero es menor al costo máximo permitido
+    if costo_por_sombrero < costo_maximo_por_sombrero:
+        break  // Si se cumple la condición, salimos del bucle
+    
+    // Si no se cumple la condición, incrementamos la cantidad de sombreros y repetimos
+    cantidad_sombreros += 1
+
+// Mostramos el resultado
+print(f"La cantidad mínima de sombreros a producir mensualmente es: {cantidad_sombreros}")
+
+
+Ejercicio 2
+
+// Solicitamos al usuario que ingrese un número
+numero = int(input("Ingrese un número: "))
+
+// Verificamos si el número cumple las condiciones para ser "especial"
+
+if numero > 0:  // Comprueba si el número es positivo
+
+    if numero % 3 == 0:  // Comprueba si el número es divisible por 3
+
+        if (numero % 100 != 0) or (numero % 300 == 0):  // Comprueba si no es divisible por 100, o si es divisible por 300
+
+            print("El número es especial.")  // Si el número cumple todas las condiciones
+        else:
+            print("El número no es especial.")  // Si no cumple la condición 
+    else:
+        print("El número no es especial.")  // No cumple la condición de divisibilidad por 3
+else:
+    print("El número no es especial.")  // No cumple la condición de ser positivo
+
+
+
+Ejercicio 3
+
+// Inicializamos la secuencia con los números conocidos
+secuencia = [3, 8, 12, 16, 21]
+
+// Definimos los incrementos alternados
+incrementos = [5, 4]  // valores que se sumarán alternativamente
+
+// Calculamos los siguientes 5 números en la secuencia
+
+for i in range(5):  
+    // Obtenemos el último número de la secuencia
+    ultimo_numero = secuencia[-1]
+    
+    // Elegimos el incremento basado en la posición
+    incremento = incrementos[i % 2]  # Alterna entre 5 y 4
+    
+    // Añadimos el siguiente número a la secuencia
+    secuencia.append(ultimo_numero + incremento)
+
+// Mostramos la secuencia completa
+print("La secuencia completa con los 5 siguientes números es:", secuencia)
+
+
+Ejercicio 4
+
+//  verificar si un número es primo
+
+def es_primo(numero):
+    if numero <= 1:
+        return False  // No es primo si es menor o igual a 1
+
+    for i in range(2, int(numero ** 0.5) + 1):  // Iteramos hasta la raíz cuadrada del número
+        if numero % i == 0:
+            return False  // No es primo si es divisible por 'i'
+     	    return True  // Es primo 
+
+// Función para calcular los puntos de la ficha
+def calcular_puntos(ficha):
+
+    puntos_totales = 0  // Inicializamos la suma de puntos
+
+    for numero in ficha:  // Iteramos sobre cada número en la ficha
+        if es_primo(numero):  // Si el número es primo, suma 4 puntos
+            puntos_totales += 4
+        if numero % 2 == 0:  // Si el número es par, suma 1 punto
+            puntos_totales += 1
+        if numero % 7 == 0:  // Si el número es múltiplo de 7, suma 2 puntos
+            puntos_totales += 2
+    return puntos_totales
+
+// Verificación de la ficha ganadora
+
+def es_ficha_ganadora(ficha):
+    puntos = calcular_puntos(ficha)  // Calculamos los puntos de la ficha
+    return puntos > 70  // La ficha es ganadora si los puntos son mayores a 70
+
+if (return puntos > 70)
+
+    print("¡La ficha es ganadora!")
+else:
+    print("La ficha no es ganadora.")
+
+
+Ejercicio 5
+
+// Solicitamos al usuario que ingrese el número de su ficha
+numero_ficha = input("Ingrese su número de ficha (6 o 7 dígitos): ")
+
+// Verificamos si el número es espejo
+if numero_ficha == numero_ficha[::-1]:  // Se invierte el número y se compara con el original
+
+    print("Te tocó ir a las clases presenciales.")  // Es espejo, por lo tanto, asiste presencialmente
+else:
+    print("Te quedas en casita, ¡pero a estudiar!")  // No es espejo, estudia en casa
+
+
+Ejercicio 6
+
+
+ 1. n = 9 // Inicializamos la variable n con el valor 9.
+
+
+ 2. Bucle while n > 0 // El bucle while se ejecuta mientras se cumpla la condición de que "n" sea mayor a 0
+
+
+ 3. if n % 2 == 0 // Dentro del bucle, se evalúa si n es divisible entre 2 (par o impar)
+
+ 4.  n % 2 == 0  //verifica si el resto de n al dividirse entre 2 es igual a 0. Esto es cierto solo para números pares.
+
+	Si n es par, imprime "Par".
+
+	Si n es impar, imprime "Impar".
+
+ 5. n -= 3  // Después de imprimir "Par" o "Impar", reducimos el valor de n en 3 y se repite mientras se cumpla la condición del ciclo
+
+
+Ejercicio 7
+
+// Inicializamos contadores para cada grupo
+grupo1 = 0
+grupo2 = 0
+grupo3 = 0
+grupo4 = 0
+
+// Iteramos sobre cada estudiante en el rango de edades de 10 a 17
+
+for edad in range(10, 17):  
+
+    if edad % 5 == 0 and edad % 2 != 0:
+        grupo_1 += 1  // Edad múltiplo de 5 y no de 2
+
+    if edad % 4 == 0:
+        grupo_2 += 1  // Edad múltiplo de 4
+
+    if edad % 3 == 0 and edad % 4 != 0 and edad % 5 != 0 and edad % 2 != 0:
+        grupo_3 += 1  // Edad múltiplo de 3, pero no de 4, 5 ni 2
+
+    else:
+        grupo_4 += 1  // El resto de los estudiantes
+
+// Mostramos el resultado de la clasificación
+
+print("Número de estudiantes en cada grupo:")
+print(f"Grupo 1: {grupo_1}")
+print(f"Grupo 2: {grupo_2}")
+print(f"Grupo 3: {grupo_3}")
+print(f"Grupo 4: {grupo_4}")
+
+
+Ejercicio 8
+
+es un codigo para determinar si un numero es par o impar
+
+1. if numero<= 1
+
+	print ("No") // si el numero es menor o igual a uno, mostrar "No" en pantalla
+
+2. else 
+for i in range(2, int(numero**0.5)+1):  //para sacar la raíz cuadrada del numero
+
+3. if numero %i==o: // determinar si el numero es primo o no
+
+// mostrar resultados
+
+4. print("No")
+5. else print("Si")
+
+
+Ejercicio 9
+
+
+// Solicitamos los datos al usuario
+puntos = int(input("Ingrese los puntos acumulados por el empleado: "))
+
+salario_anual = float(input("Ingrese el salario anual del empleado en Bs: "))
+
+bonificacion = 0  // Inicializamos la bonificación
+
+// Calculamos la bonificación según los puntos acumulados
+if puntos < 50:
+    bonificacion = 0
+elif 50 <= puntos <= 99:
+    bonificacion = salario_anual * 0.05
+elif puntos >= 100:
+    bonificacion = salario_anual * 0.10 + 500
+
+// Mostramos la bonificación
+print(f"La bonificación anual es de: {bonificacion} Bs"
+
+
+Ejercicio 10
+
+// Crear una array vacía para almacenar las notas de los 10 estudiantes
+notas = []
+
+// Solicitar las notas de 10 estudiantes y almacenarlas en la lista
+
+for i in range(10):
+    // Pedir al usuario que ingrese una nota y convertirla a flotante
+    nota = float(input(f"Ingrese la nota del estudiante {i + 1}: "))
+    notas.append(nota)  // Añadir la nota a la lista
+
+// Mostrar todas las notas ingresadas
+print("\nNotas ingresadas:")
+
+for i, nota in enumerate(notas, start=1):
+    print(f"Estudiante {i}: {nota}")
+
+// Calcular el promedio de las notas
+promedio = sum(notas) / len(notas)
+print(f"\nEl promedio de las notas es: {promedio}")
+
+// Encontrar la nota más alta
+nota_mas_alta = max(notas)
+print(f"La nota más alta es: {nota_mas_alta}")
+
+// Encontrar la nota más baja
+nota_mas_baja = min(notas)
+print(f"La nota más baja es: {nota_mas_baja}")
+
+
+Ejercicio 11
+
+// Definir el costo total de la bicicleta
+costo_bicicleta = 1200
+
+// Definir el monto que María ya ha ahorrado
+ahorro_inicial = 250
+
+// Definir el ahorro semanal que María realiza
+ahorro_semanal = 25
+
+// Calcular cuánto dinero le falta a María para completar el costo de la bicicleta
+monto_faltante = costo_bicicleta - ahorro_inicial
+
+// Calcular el número de semanas necesarias para ahorrar el monto faltante
+// Utilizamos ceil para redondear hacia arriba si el resultado no es un número entero
+import math
+semanas_necesarias = math.ceil(monto_faltante / ahorro_semanal)
+
+// Mostrar el resultado en pantalla
+print(f"María necesita ahorrar durante {semanas_necesarias} semanas para comprar la bicicleta.")
+
+
+Ejercicio 12
+
+ // Definir el precio total de la laptop
+precio_total = 3500
+
+// Definir el pago inicial del primer mes
+pago_inicial = 500
+
+// Definir el porcentaje de pago mensual después del primer mes
+porcentaje_pago = 0.15
+
+// Definir la deuda restante después del pago inicial
+deuda_restante = precio_total - pago_inicial
+
+// Contador para el número de meses
+meses = 1
+
+// Mostrar el pago del primer mes
+print(f"Mes {meses}: Pago de {pago_inicial} Bs, deuda restante: {deuda_restante} Bs.")
+
+// Ciclo para calcular los pagos mensuales hasta que la deuda restante sea menor o igual a 100 Bs
+while deuda_restante > 100:
+    // Calcular el pago mensual como el 15% de la deuda restante
+    pago_mensual = deuda_restante * porcentaje_pago
+    
+    // Actualizar la deuda restante después de realizar el pago
+    deuda_restante -= pago_mensual
+    
+    // Incrementar el contador de meses
+    meses += 1
+    
+    // Mostrar el pago de cada mes
+    print(f"Mes {meses}: Pago de {pago_mensual:.2f} Bs, deuda restante: {deuda_restante:.2f} Bs.")
+
+// Último pago cuando la deuda restante es de 100 Bs o menos
+meses += 1
+print(f"Mes {meses}: Pago final de {deuda_restante:.2f} Bs, deuda restante: 0 Bs.")
+
+// Mostrar el número total de meses necesarios para pagar la deuda
+print(f"\nNúmero total de cuotas: {meses} meses.")
+
+
+Ejercicio 13
+
+ // Definir la diferencia horaria entre Alemania y Bolivia (6 horas)
+diferencia_horaria = 6
+
+// Solicitar al usuario que ingrese la hora de entrega en Alemania (en formato de 24 horas)
+hora_alemania = int(input("Ingrese la hora de entrega: "))
+
+// Calcular la hora boliviana restando la diferencia horaria
+hora_bolivia = hora_alemania - diferencia_horaria
+
+// Ajustar la hora si el resultado es negativo (por ejemplo, si es antes de medianoche)
+if hora_bolivia < 0:
+    hora_bolivia += 24
+
+// Mostrar la hora a la que se debe enviar el documento desde Bolivia
+print(f"Debes enviar el documento a las {hora_bolivia}:00 horas (hora boliviana).")
+
+
+Ejercicio 14 
+
+// Crear un diccionario para mapear cada letra a su respectivo valor
+cifrado = {
+    'A': '01', 'B': '02', 'C': '03', 'D': '04', 'E': '05',
+    'F': '06', 'G': '07', 'H': '08', 'I': '09', 'J': '10',
+    'K': '11', 'L': '12', 'M': '13', 'N': '14', 'O': '15',
+    'P': '16', 'Q': '17', 'R': '18', 'S': '19', 'T': '20',
+    'U': '21', 'V': '22', 'W': '23', 'X': '24', 'Y': '25',
+    'Z': '26', ' ': '00'
+}
+
+// Solicitar al usuario que ingrese el nombre a cifrar
+nombre = input("Ingrese el nombre a cifrar: ").upper()
+
+// Variable para almacenar el cifrado final
+resultado_cifrado = ""
+
+// Recorrer cada carácter del nombre y buscar su valor en el diccionario
+for letra in nombre:
+    // cambiar el valor cifrado correspondiente a la letra
+    resultado_cifrado += cifrado.get(letra, "")
+// Mostrar el resultado del cifrado
+print(f"El nombre cifrado es: {resultado_cifrado}")
+
+Ejercicio 15
+
+import random
+
+// Definimos las variables
+ancho_sala = 100  // Ancho de la sala en metros
+largo_sala = 60  // Largo de la sala en metros
+area_mesa = 2  // Área ocupada por cada mesa en metros cuadrados
+capacidad_mesa = 3  // Número de participantes por mesa
+
+// Calculamos el número total de mesas y participantes
+total_mesas = (ancho_sala * largo_sala) // area_mesa
+total_participantes = total_mesas * capacidad_mesa
+
+// Inicializamos las listas para los participantes
+nombres = []
+edades = []
+
+// Función para verificar si el estudiante puede participar
+def verificar_participante(nombre, edad):
+    if edad > 15:
+        return f"¡Felicidades! {nombre}, eres parte del evento."
+    else:
+        return f"Lo siento, {nombre}, tu edad no está en el rango definido."
+
+// Función para asignar asientos
+def asignar_asientos(nombres):
+    asientos = []
+    for i in range(len(nombres)):
+        asiento = {
+            "Nombre": nombres[i]
+           
+            "Disponibilidad": "No disponible"
+        }
+        asientos.append(asiento)
+    return asientos
+
+// Ingresamos los datos de los participantes
+while True:
+    nombre = input("Ingrese el nombre del participante (o 'fin' para terminar): ")
+    if nombre.lower() == 'fin':
+        break
+    edad = int(input(f"Ingrese la edad de {nombre}: "))
+    
+    
+    nombres.append(nombre)
+    edades.append(edad)
+    
+    
+    print(verificar_participante(nombre, edad))
+
+// Asignamos los asientos
+asientos = asignar_asientos(nombres)
+
+// Mostramos los asientos en español e inglés
+for asiento in asientos:
+    print(f"Asiento: {asiento['Nombre']} - {asiento['Disponibilidad']}")
+   
+
+// Seleccionamos un asiento aleatorio
+asiento_aleatorio = random.choice(asientos)
+print(f"Asiento asignado aleatoriamente: {asiento_aleatorio['Nombre']}  - {asiento_aleatorio['Disponibilidad']}")
+
+
+Ejercicio 16
+
+// Importamos la librería "random" para simular el lanzamiento de los dados
+
+import random
+
+// Definimos una función para lanzar los dados y obtener sus valores
+def lanzar_dados():
+    // Creamos una array vacía para almacenar los valores de los dados
+    valores_dados = []
+    // Lanzamos dados
+    for _ in range(6):
+
+        // Generamos un número aleatorio entre 1 y 6 para cada dado
+        valor = random.randint(1, 6)  
+
+        // Añadimos el valor del dado a la lista
+        valores_dados.append(valor)
+
+    // Devolvemos la lista con los valores de los dados
+    return valores_dados
+
+// Definimos una función para clasificar la jugada según la suma de los dados
+def clasificar_jugada(suma):
+    // Verificamos si la jugada es baja
+    if suma <= 8:
+        return "Jugada baja"
+    // Verificamos si la jugada es mediana
+    elif 8 < suma <= 22:
+        return "Jugada mediana"
+    // Verificamos si la jugada es alta
+    elif 22 < suma <= 35:
+        return "Jugada alta"
+    // Verificamos si la jugada es perfecta
+    elif suma == 36:
+        return "Jugada perfecta"
+    // En caso de que no cumpla ninguna condición (no debería ocurrir)
+    else:
+        return "Jugada inválida"
+
+// Función principal del programa
+def main():
+    // Lanzamos los dados y obtenemos sus valores
+    valores_dados = lanzar_dados()
+    // Calculamos la suma de los valores de los dados
+    suma_dados = sum(valores_dados)
+    // Clasificamos la jugada según la suma de los dados
+    resultado = clasificar_jugada(suma_dados)
+    
+    // Mostramos los valores de los dados
+    print(f"Valores de los dados: {valores_dados}")
+    // Mostramos la suma de los valores de los dados
+    print(f"Suma de los dados: {suma_dados}")
+    // Mostramos el resultado de la jugada
+    print(f"Resultado: {resultado}")
+
+//  Ejecutamos la función principal
+if _name_ == "_main_":
+    main()
+
+
+Ejercicio 17
+
+
+// Definimos las constantes de conversión
+yenes_a_dolares = 142.55  // 1 dólar equivale a 142,55 yenes
+dolares_a_bolivianos_oficial = 6.85  // 1 dólar equivale a 6,85 bolivianos (cambio oficial)
+factor_estimado = 1.50  // Factor estimado fuera de los bancos (150% del cambio oficial)
+
+// Monto en yenes que Diego recibirá
+monto_yenes = 285100
+
+// Convertimos el monto de yenes a dólares
+monto_dolares = monto_yenes / yenes_a_dolares
+
+// Convertimos el monto de dólares a bolivianos al cambio oficial
+monto_bolivianos_oficial = monto_dolares * dolares_a_bolivianos_oficial
+
+// Convertimos el monto de dólares a bolivianos al cambio estimado fuera de los bancos
+monto_bolivianos_estimado = monto_bolivianos_oficial * factor_estimado
+
+// Mostramos los resultados
+print(f"Monto en dólares: {monto_dolares:.2f} USD")
+print(f"Monto en bolivianos (cambio oficial): {monto_bolivianos_oficial:.2f} BOB")
+print(f"Monto en bolivianos (cambio estimado fuera de los bancos): {monto_bolivianos_estimado:.2f} BOB")
+
+// Verificamos si Diego necesita más fondos
+if monto_dolares >= 1500:
+    print("No requieres más fondos")
+else:
+    print("Debes conseguir más fondos")
+
+
+Ejercicio 18
+
+ 
+// Definimos el monto del préstamo
+prestamo = 14000
+
+// Porcentajes de inversión
+porcentaje_laptop = 0.50
+porcentaje_muebles = 0.10
+porcentaje_publicidad = 0.30
+porcentaje_app = 0.10
+
+// Intereses fijos por categoría
+interes_laptop = 0.05
+interes_muebles = 0.07
+interes_publicidad = 0.10
+interes_app = 0.12
+
+// Cálculo de la inversión en cada ítem
+monto_laptop = prestamo * porcentaje_laptop
+monto_muebles = prestamo * porcentaje_muebles
+monto_publicidad = prestamo * porcentaje_publicidad
+monto_app = prestamo * porcentaje_app
+
+// Cálculo del interés mensual para cada ítem
+interes_mensual_laptop = monto_laptop * interes_laptop / 24
+interes_mensual_muebles = monto_muebles * interes_muebles / 24
+interes_mensual_publicidad = monto_publicidad * interes_publicidad / 24
+interes_mensual_app = monto_app * interes_app / 24
+
+// Cálculo del pago mensual total
+pago_mensual_total = (monto_laptop / 24 + interes_mensual_laptop +
+                      monto_muebles / 24 + interes_mensual_muebles +
+                      monto_publicidad / 24 + interes_mensual_publicidad +
+                      monto_app / 24 + interes_mensual_app)
+
+// Verificación de dinero sobrante
+dinero_sobrante = prestamo - (monto_laptop + monto_muebles + monto_publicidad + monto_app)
+interes_mas_alto = 0.15  // Interés fijo para dinero sobrante
+
+// Mostrar resultados
+print(f"Monto invertido en Laptop: {monto_laptop:.2f} Bolivianos")
+print(f"Monto invertido en Muebles: {monto_muebles:.2f} Bolivianos")
+print(f"Monto invertido en Publicidad: {monto_publicidad:.2f} Bolivianos")
+print(f"Monto invertido en Aplicaciones: {monto_app:.2f} Bolivianos")
+print(f"Cada mes, durante dos años debes pagar: {pago_mensual_total:.2f} Bolivianos")
+
+if dinero_sobrante > 0:
+    print(f"Revisa tus inversiones, tienes {dinero_sobrante:.2f} Bolivianos con el interés más alto ({interes_mas_alto * 100}%)")
+
+
+
+Ejercicio 19
+
+
+// Material en almacén
+tablas_largas = 26
+tablas_cortas = 33
+ganchos_pequenos = 200
+ganchos_grandes = 20
+tornillos = 510
+
+// Material necesario por estante
+tablas_largas_por_estante = 4
+tablas_cortas_por_estante = 6
+ganchos_pequenos_por_estante = 12
+ganchos_grandes_por_estante = 2
+tornillos_por_estante = 14
+
+// Pedido de estantes
+pedido_estantes = 15
+
+// Cálculo del material necesario para el pedido
+material_necesario_largas = pedido_estantes * tablas_largas_por_estante
+material_necesario_cortas = pedido_estantes * tablas_cortas_por_estante
+material_necesario_pequenos = pedido_estantes * ganchos_pequenos_por_estante
+material_necesario_grandes = pedido_estantes * ganchos_grandes_por_estante
+material_necesario_tornillos = pedido_estantes * tornillos_por_estante
+
+// Verificación de si se puede cubrir el pedido
+if (tablas_largas >= material_necesario_largas and
+    tablas_cortas >= material_necesario_cortas and
+    ganchos_pequenos >= material_necesario_pequenos and
+    ganchos_grandes >= material_necesario_grandes and
+    tornillos >= material_necesario_tornillos):
+    
+    print("Es posible realizar los 15 estantes pedidos")
+    
+    // Cálculo del material sobrante
+    sobrante_largas = tablas_largas - material_necesario_largas
+    sobrante_cortas = tablas_cortas - material_necesario_cortas
+    sobrante_pequenos = ganchos_pequenos - material_necesario_pequenos
+    sobrante_grandes = ganchos_grandes - material_necesario_grandes
+    sobrante_tornillos = tornillos - material_necesario_tornillos
+    
+    // Cálculo de estantes adicionales que se pueden construir con el material sobrante
+    estantes_adicionales = min(sobrante_largas // tablas_largas_por_estante,
+                               sobrante_cortas // tablas_cortas_por_estante,
+                               sobrante_pequenos // ganchos_pequenos_por_estante,
+                               sobrante_grandes // ganchos_grandes_por_estante,
+                               sobrante_tornillos // tornillos_por_estante)
+    
+    print(f"Con el material sobrante puedes construir {estantes_adicionales} estantes adicionales")
+else:
+    print("No es posible cubrir el pedido porque faltan:")
+    if tablas_largas < material_necesario_largas:
+        print(f"{material_necesario_largas - tablas_largas} tablas largas")
+    if tablas_cortas < material_necesario_cortas:
+        print(f"{material_necesario_cortas - tablas_cortas} tablas cortas")
+    if ganchos_pequenos < material_necesario_pequenos:
+        print(f"{material_necesario_pequenos - ganchos_pequenos} ganchos pequeños")
+    if ganchos_grandes < material_necesario_grandes:
+        print(f"{material_necesario_grandes - ganchos_grandes} ganchos grandes")
+    if tornillos < material_necesario_tornillos:
+        print(f"{material_necesario_tornillos - tornillos} tornillos")
+
+
+Ejercicio 20
+
+// Función para obtener la entrada del usuario
+def obtener_entrada(mensaje):
+    return int(input(mensaje))
+
+// primer cambio:  para poder satisfacer los nuevos requerimientos, los datos ya no son predeterminados, sino que el usuario ingresa los datos en el momento.
+tablas_largas = obtener_entrada("Ingrese la cantidad de tablas largas en almacén: ")
+tablas_cortas = obtener_entrada("Ingrese la cantidad de tablas cortas en almacén: ")
+ganchos_pequenos = obtener_entrada("Ingrese la cantidad de ganchos pequeños en almacén: ")
+ganchos_grandes = obtener_entrada("Ingrese la cantidad de ganchos grandes en almacén: ")
+tornillos = obtener_entrada("Ingrese la cantidad de tornillos en almacén: ")
+
+// segundo cambio: de la misma menera que el anterior cambio, ahora el dato lo proporciona el usuario
+pedido_estantes = obtener_entrada("Ingrese la cantidad de estantes a construir: ")
+
+// Material necesario por estante
+tablas_largas_por_estante = 4
+tablas_cortas_por_estante = 6
+ganchos_pequenos_por_estante = 12
+ganchos_grandes_por_estante = 2
+tornillos_por_estante = 14
+
+// Cálculo del material necesario para el pedido
+material_necesario_largas = pedido_estantes * tablas_largas_por_estante
+material_necesario_cortas = pedido_estantes * tablas_cortas_por_estante
+material_necesario_pequenos = pedido_estantes * ganchos_pequenos_por_estante
+material_necesario_grandes = pedido_estantes * ganchos_grandes_por_estante
+material_necesario_tornillos = pedido_estantes * tornillos_por_estante
+
+// Verificación de si se puede cubrir el pedido
+if (tablas_largas >= material_necesario_largas and
+    tablas_cortas >= material_necesario_cortas and
+    ganchos_pequenos >= material_necesario_pequenos and
+    ganchos_grandes >= material_necesario_grandes and
+    tornillos >= material_necesario_tornillos):
+    
+    print("Es posible realizar los estantes pedidos")
+    
+    // Cálculo del material sobrante
+    sobrante_largas = tablas_largas - material_necesario_largas
+    sobrante_cortas = tablas_cortas - material_necesario_cortas
+    sobrante_pequenos = ganchos_pequenos - material_necesario_pequenos
+    sobrante_grandes = ganchos_grandes - material_necesario_grandes
+    sobrante_tornillos = tornillos - material_necesario_tornillos
+    
+    // Cálculo de estantes adicionales que se pueden construir con el material sobrante
+    estantes_adicionales = min(sobrante_largas // tablas_largas_por_estante,
+                               sobrante_cortas // tablas_cortas_por_estante,
+                               sobrante_pequenos // ganchos_pequenos_por_estante,
+                               sobrante_grandes // ganchos_grandes_por_estante,
+                               sobrante_tornillos // tornillos_por_estante)
+    
+    print(f"Con el material sobrante puedes construir {estantes_adicionales} estantes adicionales")
+else:
+    print("No es posible cubrir el pedido porque faltan:")
+    if tablas_largas < material_necesario_largas:
+        print(f"{material_necesario_largas - tablas_largas} tablas largas")
+    if tablas_cortas < material_necesario_cortas:
+        print(f"{material_necesario_cortas - tablas_cortas} tablas cortas")
+    if ganchos_pequenos < material_necesario_pequenos:
+        print(f"{material_necesario_pequenos - ganchos_pequenos} ganchos pequeños")
+    if ganchos_grandes < material_necesario_grandes:
+        print(f"{material_necesario_grandes - ganchos_grandes} ganchos grandes")
+    if tornillos < material_necesario_tornillos:
+        print(f"{material_necesario_tornillos - tornillos} tornillos")
+
+
+Ejercicio 21
+
+// Definimos las tarifas según el peso
+tarifas = [
+    (20, 3.5),
+    (50, 4.5),
+    (100, 5.8),
+    (200, 7),
+    (350, 8),
+    (500, 9),
+    (1000, 12),
+    (2000, 17),
+    (3000, 21)
+]
+
+// Función para obtener la tarifa según el peso
+def obtener_tarifa(peso):
+    for limite, tarifa in tarifas:
+        if peso <= limite:
+            return tarifa
+    return "especial"
+
+// Función para calcular el costo total de envío
+def calcular_costo_total(pesos):
+    costo_individual = sum(obtener_tarifa(peso) for peso in pesos)
+    peso_total = sum(pesos)
+    tarifa_total = obtener_tarifa(peso_total)
+    
+    if tarifa_total == "especial":
+        print("El peso total está fuera del rango permitido para un solo envío.")
+        return costo_individual, "especial"
+    
+    return costo_individual, tarifa_total
+
+// Entrada del usuario
+num_paquetes = int(input("Ingrese el número de paquetes a enviar: "))
+pesos = [float(input(f"Ingrese el peso del paquete {i+1} en gramos: ")) for i in range(num_paquetes)]
+
+// Cálculo de costos
+costo_individual, tarifa_total = calcular_costo_total(pesos)
+
+// Mostrar resultados
+print(f"Costo de enviar los paquetes individualmente: {costo_individual} Bs")
+if tarifa_total == "especial":
+    print("No es posible enviar todos los paquetes juntos debido al peso total.")
+else:
+    print(f"Costo de enviar todos los paquetes juntos: {tarifa_total} Bs")
+
+// Determinar la opción más conveniente
+if tarifa_total != "especial" and tarifa_total < costo_individual:
+    print("Es más conveniente enviar todos los paquetes juntos.")
+else:
+    print("Es más conveniente enviar los paquetes individualmente.")
+
+
+
+Ejercicio 22
+
+
+// Inicializamos la lista para almacenar los diámetros de las monedas
+diametros_monedas = []
+
+// Establecemos el primer diámetro mínimo 
+diametro = 20
+diametros_monedas.append(diametro)
+
+// Ciclo para calcular los diámetros de las 6 monedas
+// Comenzamos desde la segunda moneda
+for i in range(1, 6): 
+
+    // Calculamos el nuevo diámetro incrementando al menos un 30%
+    nuevo_diametro = diametro * 1.3
+    
+    // Redondeo según el decimal, si es >= 0.5 sube, si es < 0.5 baja
+    if nuevo_diametro % 1 >= 0.5:
+        nuevo_diametro = int(nuevo_diametro) + 1  // Redondea hacia arriba
+    else:
+        nuevo_diametro = int(nuevo_diametro)      // Redondea hacia abajo
+    
+    // Verificamos que no supere el máximo de 60 mm
+
+    if nuevo_diametro > 60:
+        print("No es posible agregar más monedas dentro del rango.")
+        break
+    
+    // Agregamos el diámetro calculado a la lista de diámetros
+
+    diametros_monedas.append(nuevo_diametro)
+    
+    // Actualizamos el diámetro para la siguiente iteración
+
+    diametro = nuevo_diametro
+
+// Mostramos los diámetros de las monedas calculadas
+
+print("Diámetros de las monedas:", diametros_monedas)
+
+
+Ejercicio 23
+
+
+// Definimos el diámetro inicial  y el diámetro final 
+diametro_inicial = 20
+diametro_final = 60
+
+// Calculamos la constante de incremento entre cada moneda
+constante_incremento = (diametro_final - diametro_inicial) / 5
+
+// Creamos una lista para almacenar los diámetros de las 6 monedas
+diametros_monedas = []
+
+// Bucle para calcular el diámetro de cada moneda
+
+for i in range(6):
+    // Calculamos el diámetro de la moneda actual
+    diametro_moneda = diametro_inicial + i * constante_incremento
+    
+    // Redondeamos el diámetro al entero más cercano
+    diametro_moneda = round(diametro_moneda)
+    
+    // Agregamos el diámetro a la lista de diámetros
+    diametros_monedas.append(diametro_moneda)
+
+// Mostramos la constante de incremento y los diámetros de cada moneda
+print("Constante de incremento:", constante_incremento)
+print("Diámetros de las monedas:", diametros_monedas)
+
+
+Ejercicio 24
+
+Identifica las variables: las variables son "i" y "J"
+
+Identifica las estructuras de control:
+
+	-(for i in range (1,10)) : dice que i empezara en 1 y aumentara hasta llegar al 9.
+
+	-for j in range(1,2): j empieza en 1 y termina antes del 2, esto se ejecuta solo una vez en el ciclo mientas j valga 1 en cada ciclo de i
+
+	-i+=3:  cada vez que el bucle de i termina, este aumenta en 3 y funcionará a partir de este valor.
+
+	-print(f"({i}, {j})", end=" "): imprime los valores actuales de i y j
+
+	-print(): se ejecuta al terminar el bucle exterior, para que el resultado salga en una columna, no en una sola fila
+
+
+Si se elimina la tercera linea de código, cuál será la impresión?
+
+i ya no incrementa en 3 en cada iteración, seguirá el curso de incremento de 1 a 1 hasta llegar al 9.
+j siempre valdrá 1
+al final del ciclo, el programa imprimirá el valor de i y j.
+
+
+
+
+
