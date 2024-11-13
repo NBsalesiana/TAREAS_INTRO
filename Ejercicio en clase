@@ -1,0 +1,100 @@
+public class InventarioEstantes {
+
+    // Material en almacén
+    static int tablasLargas = 26;
+    static int tablasCortas = 33;
+    static int ganchosPequenos = 200;
+    static int ganchosGrandes = 20;
+    static int tornillos = 510;
+
+    // Material necesario por estante
+    static int tablasLargasPorEstante = 4;
+    static int tablasCortasPorEstante = 6;
+    static int ganchosPequenosPorEstante = 12;
+    static int ganchosGrandesPorEstante = 2;
+    static int tornillosPorEstante = 14;
+
+    public static void main(String[] args) {
+        int pedidoEstantes = 15;
+
+        // Cálculo del material necesario
+        int[] materialNecesario = calcularMaterialNecesario(pedidoEstantes);
+
+        // Verificación de si se puede cubrir el pedido
+        if (verificarMaterial(materialNecesario)) {
+            System.out.println("Es posible realizar los " + pedidoEstantes + " estantes pedidos.");
+
+            // Cálculo de material sobrante y estantes adicionales
+            int[] sobrante = calcularSobrante(materialNecesario);
+            int estantesAdicionales = calcularEstantesAdicionales(sobrante);
+            System.out.println("Con el material sobrante puedes construir " + estantesAdicionales + " estantes adicionales.");
+        } else {
+            mostrarFaltantes(materialNecesario);
+        }
+    }
+
+    // Función para calcular el material necesario
+    public static int[] calcularMaterialNecesario(int pedidoEstantes) {
+        int[] materialNecesario = new int[5];
+        materialNecesario[0] = pedidoEstantes * tablasLargasPorEstante;
+        materialNecesario[1] = pedidoEstantes * tablasCortasPorEstante;
+        materialNecesario[2] = pedidoEstantes * ganchosPequenosPorEstante;
+        materialNecesario[3] = pedidoEstantes * ganchosGrandesPorEstante;
+        materialNecesario[4] = pedidoEstantes * tornillosPorEstante;
+        return materialNecesario;
+    }
+
+    // Función para verificar si hay suficiente material
+    public static boolean verificarMaterial(int[] materialNecesario) {
+        return tablasLargas >= materialNecesario[0] &&
+               tablasCortas >= materialNecesario[1] &&
+               ganchosPequenos >= materialNecesario[2] &&
+               ganchosGrandes >= materialNecesario[3] &&
+               tornillos >= materialNecesario[4];
+    }
+
+    // Función para calcular el material sobrante
+    public static int[] calcularSobrante(int[] materialNecesario) {
+        int[] sobrante = new int[5];
+        sobrante[0] = tablasLargas - materialNecesario[0];
+        sobrante[1] = tablasCortas - materialNecesario[1];
+        sobrante[2] = ganchosPequenos - materialNecesario[2];
+        sobrante[3] = ganchosGrandes - materialNecesario[3];
+        sobrante[4] = tornillos - materialNecesario[4];
+        return sobrante;
+    }
+
+    // Función para calcular estantes adicionales con el material sobrante
+    public static int calcularEstantesAdicionales(int[] sobrante) {
+        int[] estantesPosibles = new int[5];
+        estantesPosibles[0] = sobrante[0] / tablasLargasPorEstante;
+        estantesPosibles[1] = sobrante[1] / tablasCortasPorEstante;
+        estantesPosibles[2] = sobrante[2] / ganchosPequenosPorEstante;
+        estantesPosibles[3] = sobrante[3] / ganchosGrandesPorEstante;
+        estantesPosibles[4] = sobrante[4] / tornillosPorEstante;
+
+        int estantesAdicionales = estantesPosibles[0];
+        for (int i = 1; i < estantesPosibles.length; i++) {
+            estantesAdicionales = Math.min(estantesAdicionales, estantesPosibles[i]);
+        }
+        return estantesAdicionales;
+    }
+
+    // Procedimiento para mostrar el material faltante
+    public static void mostrarFaltantes(int[] materialNecesario) {
+        System.out.println("No es posible cubrir el pedido porque faltan:");
+        if (tablasLargas < materialNecesario[0]) {
+            System.out.println((materialNecesario[0] - tablasLargas) + " tablas largas");
+        }
+        if (tablasCortas < materialNecesario[1]) {
+            System.out.println((materialNecesario[1] - tablasCortas) + " tablas cortas");
+        }
+        if (ganchosPequenos < materialNecesario[2]) {
+            System.out.println((materialNecesario[2] - ganchosPequenos) + " ganchos pequeños");
+        }
+        if (ganchosGrandes < materialNecesario[3]) {
+            System.out.println((materialNecesario[3] - ganchosGrandes) + " ganchos grandes");
+        }
+        if (tornillos < materialNecesario[4]) {
+            System.out.println((materialNecesario[4] - tornillos) + " tornillos");
+        }
