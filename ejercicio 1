@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+public class CorreosBolivianos {
+    
+    // Función para calcular el costo según el peso
+    public static double calcularCosto(double peso) {
+        if (peso >= 0 && peso <= 20) {
+            return 3.5;
+        } else if (peso >= 21 && peso <= 50) {
+            return 4.5;
+        } else if (peso >= 51 && peso <= 100) {
+            return 5.8;
+        } else if (peso >= 101 && peso <= 200) {
+            return 7.0;
+        } else if (peso >= 201 && peso <= 350) {
+            return 8.0;
+        } else {
+            return -1; // Indica que el peso está fuera del rango 
+        }
+    }
+    
+    // Procedimiento para mostrar el mensaje de costos y recomendaciones
+    public static void mostrarResultados(double[] pesos, double costoIndividual, double costoTotal) {
+        System.out.println("Costo si se envían los paquetes individualmente: " + costoIndividual + " Bs");
+        System.out.println("Costo si se envían todos los paquetes juntos: " + costoTotal + " Bs");
+
+        if (costoIndividual < costoTotal) {
+            System.out.println("Es más económico enviar los paquetes de forma individual.");
+        } else {
+            System.out.println("Es más económico enviar los paquetes todos juntos en un solo envío.");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Ingrese el número de paquetes a enviar: ");
+        int numPaquetes = scanner.nextInt();
+        
+        double[] pesos = new double[numPaquetes];
+        double costoIndividual = 0;
+        double pesoTotal = 0;
+        
+        // Leer el peso de cada paquete y calcular el costo individual
+        for (int i = 0; i < numPaquetes; i++) {
+            System.out.print("Ingrese el peso del paquete " + (i + 1) + " en gramos: ");
+            pesos[i] = scanner.nextDouble();
+            
+            double costo = calcularCosto(pesos[i]);
+            if (costo == -1) {
+                System.out.println("El peso del paquete " + (i + 1) + " está fuera del rango permitido.");
+            } else {
+                costoIndividual += costo;
+                pesoTotal += pesos[i];
+            }
+        }
+        
+        // Calcular el costo total si se envían todos juntos
+        double costoTotal = calcularCosto(pesoTotal);
+        
+        if (costoTotal == -1) {
+            System.out.println("El peso total está fuera del rango permitido para un solo envío.");
+            System.out.println("Es necesario enviar los paquetes de forma individual.");
+        } else {
+            // Mostrar los resultados
+            mostrarResultados(pesos, costoIndividual, costoTotal);
+        }
+        
+        scanner.close();
+    }
+}
