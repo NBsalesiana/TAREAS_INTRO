@@ -1,0 +1,676 @@
+1.
+#include <iostream>
+using namespace std;
+
+// Declaración de las funciones y procedimientos
+
+int calcularSombrerosDiarios(double costo_fijo, double costo_variable, double costo_maximo);
+
+int calcularSombrerosMensuales(int sombreros_diarios_minimos, int dias_del_mes);
+
+void imprimirResultados(int sombreros_diarios_minimos, int sombreros_mensuales);
+
+int main() {
+    // Declaramos las variables necesarias
+    double costo_fijo = 800;    // Costo fijo diario en Bs
+    double costo_variable = 20; // Costo variable por sombrero en Bs
+    double costo_maximo = 25;   // Costo máximo por sombrero que debe ser menor o igual a 25 Bs
+    int dias_del_mes = 30;      // Suponemos que el mes tiene 30 días
+
+    // Calcular la cantidad mínima de sombreros diarios
+    int sombreros_diarios_minimos = calcularSombrerosDiarios(costo_fijo, costo_variable, costo_maximo);
+
+    // Calcular la cantidad mínima de sombreros mensuales
+    int sombreros_mensuales = calcularSombrerosMensuales(sombreros_diarios_minimos, dias_del_mes);
+
+    // Imprimir los resultados
+    imprimirResultados(sombreros_diarios_minimos, sombreros_mensuales);
+
+    return 0;
+}
+
+//  función para calcular sombreros diarios
+double calcularSombrerosDiarios(double costo_fijo, double costo_variable, double costo_maximo) {
+
+    //  calcular la cantidad mínima de sombreros diarios
+    return costo_fijo / (costo_maximo - costo_variable);
+}
+
+//  función para calcular sombreros mensuales
+int calcularSombrerosMensuales(int sombreros_diarios_minimos, int dias_del_mes) {
+
+    // Multiplicamos los sombreros diarios por los días del mes
+    return sombreros_diarios_minimos * dias_del_mes;
+}
+
+//  procedimiento para imprimir los resultados
+void imprimirResultados(int sombreros_diarios_minimos, int sombreros_mensuales) {
+
+    // Mostrar los resultados
+    cout << "La cantidad mínima de sombreros diarios es: " << sombreros_diarios_minimos << endl;
+    cout << "La cantidad mínima de sombreros mensuales es: " << sombreros_mensuales << endl;
+}
+
+
+
+2. 
+#include <iostream>
+using namespace std;
+
+// Función para  número es primo
+bool esPrimo(int n) {
+    if (n <= 1) return false; // Los números menores o iguales a 1 no son primos
+    for (int i = 2; i * i <= n; i++) { 
+        if (n % i == 0) {
+            return false; // Si es divisible por otro número, no es primo
+        }
+    }
+    return true; // Si no es divisible por ningún número, es primo
+}
+
+// Función para un número par
+bool esPar(int n) {
+    return n % 2 == 0;
+}
+
+// Función para verificar si un número es múltiplo de 7
+bool esMultiploDeSiete(int n) {
+    return n % 7 == 0; 
+}
+
+// Función para calcular los puntos de una ficha (un arreglo de 20 números)
+int calcularPuntos(int ficha[]) {
+    int totalPuntos = 0;
+    
+    // Recorremos todos los números de la ficha
+    for (int i = 0; i < 20; i++) {
+        if (esPrimo(ficha[i])) {
+            totalPuntos += 4; // Si es primo, sumamos 4 puntos
+        }
+        else if (esMultiploDeSiete(ficha[i])) {
+            totalPuntos += 2; // Si es múltiplo de 7, sumamos 2 puntos
+        }
+        else if (esPar(ficha[i])) {
+            totalPuntos += 1; // Si es par, sumamos 1 punto
+        }
+    }
+    
+    return totalPuntos;
+}
+
+// Función para ficha es ganadora
+bool esGanadora(int puntos) {
+    return puntos > 70; // Si la suma de puntos es mayor a 70, es ganadora
+}
+
+int main() {
+  
+    int ficha[20] = {2, 3, 7, 8, 10, 13, 14, 17, 21, 22, 24, 29, 30, 32, 34, 37, 39, 41, 44, 49};
+    
+    // Calculamos los puntos de la ficha
+    int puntos = calcularPuntos(ficha);
+    
+    // Mostramos los puntos obtenidos
+    cout << "Total de puntos: " << puntos << endl;
+    
+    // Verificamos si es ganadora
+    if (esGanadora(puntos)) {
+        cout << "¡La ficha es ganadora!" << endl;
+    
+    
+    return 0;
+}
+
+
+3.
+#include <iostream>
+using namespace std;
+
+// Función para invertir el número
+int invertirNumero(int numero) {
+    int invertido = 0;
+    while (numero > 0) {
+        invertido = invertido * 10 + (numero % 10); // Extrae el último dígito y lo coloca en la nueva posición
+        numero /= 10; // Elimina el último dígito
+    }
+    return invertido;
+}
+
+// Función para determinar si el número es espejo
+bool esEspejo(int numero) {
+    // Comparamos el número original con el número invertido
+    return numero == invertirNumero(numero);
+}
+
+// Función para verificar si el número tiene entre 6 y 7 dígitos
+bool esValido(int numero) {
+    return (numero >= 100000 && numero <= 9999999); // Verifica que el número esté en el rango de 6 a 7 dígitos
+}
+
+// Función para imprimir el resultado
+void imprimirResultado(bool esEspejo) {
+    if (esEspejo) {
+        cout << "Te tocó ir a las clases presenciales" << endl;
+    } else {
+        cout << "Te quedas en casita, ¡pero a estudiar!" << endl;
+    }
+}
+
+int main() {
+    int numero;
+
+    // Pedimos al usuario que ingrese el número de la ficha
+    cout << "Ingresa el número de la ficha (entre 6 y 7 dígitos): ";
+    cin >> numero;
+
+    // Verificamos si el número es válido (tiene entre 6 y 7 dígitos)
+    if (!esValido(numero)) {
+        cout << "Número inválido, asegúrate de que tenga entre 6 y 7 dígitos." << endl;
+        return 0; // Terminamos el programa si el número no es válido
+    }
+
+    // Verificamos si el número es espejo
+    bool espejo = esEspejo(numero);
+
+    // Imprimimos el resultado
+    imprimirResultado(espejo);
+
+    return 0;
+}
+
+
+
+4.
+ #include <iostream>
+using namespace std;
+
+// Función para verificar si un número es múltiplo de otro
+bool esMultiploDe(int numero, int divisor) {
+    return numero % divisor == 0; // Verifica si el residuo de la división es 0
+}
+
+// Función para clasificar al estudiante según su edad
+int clasificarEstudiante(int edad) {
+    
+    if (esMultiploDe(edad, 5) && !esMultiploDe(edad, 2)) {
+        return 1;
+    }
+    
+    else if (esMultiploDe(edad, 4)) {
+        return 2;
+    }
+    
+    else if (esMultiploDe(edad, 3) && !esMultiploDe(edad, 4) && !esMultiploDe(edad, 5) && !esMultiploDe(edad, 2)) {
+        return 3;
+    }
+    
+    return 4;
+}
+
+// Función para imprimir los resultados de la clasificación
+void imprimirResultados(int grupo1, int grupo2, int grupo3, int grupo4) {
+    cout << "Grupo 1 (Múltiplo de 5 pero no de 2): " << grupo1 << " estudiantes" << endl;
+    cout << "Grupo 2 (Múltiplo de 4): " << grupo2 << " estudiantes" << endl;
+    cout << "Grupo 3 (Múltiplo de 3 pero no de 4, 5 ni 2): " << grupo3 << " estudiantes" << endl;
+    cout << "Grupo 4 (Resto de los estudiantes): " << grupo4 << " estudiantes" << endl;
+}
+
+int main() {
+    int grupo1 = 0, grupo2 = 0, grupo3 = 0, grupo4 = 0;
+    
+    // Iteramos a través de las edades entre 10 y 17 años (total 1000 estudiantes)
+    for (int edad = 10; edad <= 17; edad++) {
+        int grupo = clasificarEstudiante(edad); // Clasificamos al estudiante por su edad
+        // Incrementamos el contador del grupo correspondiente
+        switch (grupo) {
+            case 1: grupo1++; break;
+            case 2: grupo2++; break;
+            case 3: grupo3++; break;
+            case 4: grupo4++; break;
+        }
+    }
+    
+    // Imprimimos los resultados de la clasificación
+    imprimirResultados(grupo1, grupo2, grupo3, grupo4);
+
+    return 0;
+}
+
+
+5.
+#include <iostream>
+using namespace std;
+
+int main() {
+    const int NUM_ESTUDIANTES = 10;
+    double notas[NUM_ESTUDIANTES]; 
+    double suma = 0;  
+    double promedio; 
+    double notaMax = -1;  
+    double notaMin = 11; 
+
+    // Ingreso de las notas de los 10 estudiantes
+    cout << "Ingresa las notas de 10 estudiantes:" << endl;
+    for (int i = 0; i < NUM_ESTUDIANTES; i++) {
+        cout << "Nota del estudiante " << i + 1 << ": ";
+        cin >> notas[i];
+    }
+
+    // Mostrar todas las notas ingresadas
+    cout << "Las notas ingresadas son:" << endl;
+    for (int i = 0; i < NUM_ESTUDIANTES; i++) {
+        cout << "Estudiante " << i + 1 << ": " << notas[i] << endl;
+    }
+
+    // Calcular el promedio
+    for (int i = 0; i < NUM_ESTUDIANTES; i++) {
+        suma += notas[i]; 
+    }
+    promedio = suma / NUM_ESTUDIANTES; 
+
+    // Encontrar la nota más alta y la más baja
+    for (int i = 0; i < NUM_ESTUDIANTES; i++) {
+        if (notas[i] > notaMax) {
+            notaMax = notas[i]; 
+        }
+        if (notas[i] < notaMin) {
+            notaMin = notas[i]; 
+        }
+    }
+
+    // Mostrar el promedio, la nota más alta y la más baja
+    cout << "Promedio de las notas: " << promedio << endl;
+    cout << "La nota más alta es: " << notaMax << endl;
+    cout << "La nota más baja es: " << notaMin << endl;
+
+    return 0;
+}
+
+
+6.
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    const int CAPACIDAD_SALA = 9000; // Capacidad máxima de participantes
+    int participantes = 0; // Contador de participantes actuales
+    
+    while (participantes < CAPACIDAD_SALA) {
+        string nombre;
+        int edad;
+        
+        // Solicitar el nombre y la edad del participante
+        cout << "Ingrese su nombre: ";
+        
+        cout << "Ingrese su edad: ";
+        cin >> edad;
+        
+
+        // Verificar si la edad está en el rango permitido
+        if (edad > 15 && edad < 30) {
+            // Verificar si hay espacio en la sala
+            if (participantes < CAPACIDAD_SALA) {
+                participantes += 3; // Se suman 3 participantes por cada mesa
+                cout << "¡Felicidades! " << nombre << ", eres parte del evento." << endl;
+            }
+        } else if (edad <= 15 || edad >= 30) {
+            cout << "Lo siento, " << nombre << ", tu edad no está en el rango definido." << endl;
+        }
+        
+        // Si no hay espacio en la sala
+        if (participantes >= CAPACIDAD_SALA) {
+            cout << "Lo siento, " << nombre << ", el evento está lleno." << endl;
+            break;
+        }
+    }
+
+    return 0;
+}
+
+
+
+7.
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Material disponible
+    int tablasLargas = 26;
+    int tablasCortas = 33;
+    int ganchosPequenos = 200;
+    int ganchosGrandes = 20;
+    int tornillos = 510;
+    
+    // Material necesario por estante
+    int tablasLargasPorEstante = 4;
+    int tablasCortasPorEstante = 6;
+    int ganchosPequenosPorEstante = 12;
+    int ganchosGrandesPorEstante = 2;
+    int tornillosPorEstante = 14;
+    
+    // Pedido de Juan: 15 estantes
+    int estantesPedidos = 15;
+    
+    // Variables para almacenar el material necesario para los 15 estantes
+    int totalTablasLargas, totalTablasCortas, totalGanchosPequenos, totalGanchosGrandes, totalTornillos;
+    
+    // Calcular el material necesario para los 15 estantes
+    calcularMaterialNecesario(estantesPedidos, totalTablasLargas, totalTablasCortas, 
+                               totalGanchosPequenos, totalGanchosGrandes, totalTornillos);
+    
+    // Verificar si hay suficiente material
+    if (verificarMaterialSuficiente(tablasLargas, tablasCortas, ganchosPequenos, ganchosGrandes, 
+                                    tornillos, totalTablasLargas, totalTablasCortas, 
+                                    totalGanchosPequenos, totalGanchosGrandes, totalTornillos)) {
+        // Si hay suficiente material, calcular el material sobrante y cuántos estantes adicionales se pueden construir
+        int estantesPosiblesConSobrante = calcularEstantesSobrantes(tablasLargas, tablasCortas, ganchosPequenos, 
+                                                                   ganchosGrandes, tornillos, totalTablasLargas,
+                                                                   totalTablasCortas, totalGanchosPequenos, 
+                                                                   totalGanchosGrandes, totalTornillos);
+        // Mostrar resultado positivo
+        mostrarResultadoPositivo(estantesPedidos, estantesPosiblesConSobrante);
+    } else {
+        // Calcular cuánto material falta
+        int faltaTablasLargas = max(0, totalTablasLargas - tablasLargas);
+        int faltaTablasCortas = max(0, totalTablasCortas - tablasCortas);
+        int faltaGanchosPequenos = max(0, totalGanchosPequenos - ganchosPequenos);
+        int faltaGanchosGrandes = max(0, totalGanchosGrandes - ganchosGrandes);
+        int faltaTornillos = max(0, totalTornillos - tornillos);
+        
+        // Mostrar resultado negativo
+        mostrarResultadoNegativo(faltaTablasLargas, faltaTablasCortas, faltaGanchosPequenos, 
+                                  faltaGanchosGrandes, faltaTornillos);
+
+// Función para calcular el material necesario para los 15 estantes
+void calcularMaterialNecesario(int estantesPedidos, int& totalTablasLargas, int& totalTablasCortas, 
+                                int& totalGanchosPequenos, int& totalGanchosGrandes, int& totalTornillos) {
+    totalTablasLargas = 4 * estantesPedidos;
+    totalTablasCortas = 6 * estantesPedidos;
+    totalGanchosPequenos = 12 * estantesPedidos;
+    totalGanchosGrandes = 2 * estantesPedidos;
+    totalTornillos = 14 * estantesPedidos;
+}
+
+// Función para verificar si hay suficiente material
+bool verificarMaterialSuficiente(int tablasLargas, int tablasCortas, int ganchosPequenos, 
+                                 int ganchosGrandes, int tornillos, int totalTablasLargas,
+                                 int totalTablasCortas, int totalGanchosPequenos, 
+                                 int totalGanchosGrandes, int totalTornillos) {
+    return (tablasLargas >= totalTablasLargas && tablasCortas >= totalTablasCortas &&
+            ganchosPequenos >= totalGanchosPequenos && ganchosGrandes >= totalGanchosGrandes &&
+            tornillos >= totalTornillos);
+}
+
+// Función para calcular el material sobrante y cuántos estantes adicionales se pueden construir
+int calcularEstantesSobrantes(int tablasLargas, int tablasCortas, int ganchosPequenos, 
+                               int ganchosGrandes, int tornillos, int totalTablasLargas,
+                               int totalTablasCortas, int totalGanchosPequenos, 
+                               int totalGanchosGrandes, int totalTornillos) {
+    int tablasLargasSobrantes = tablasLargas - totalTablasLargas;
+    int tablasCortasSobrantes = tablasCortas - totalTablasCortas;
+    int ganchosPequenosSobrantes = ganchosPequenos - totalGanchosPequenos;
+    int ganchosGrandesSobrantes = ganchosGrandes - totalGanchosGrandes;
+    int tornillosSobrantes = tornillos - totalTornillos;
+
+    return min(tablasLargasSobrantes / 4,
+               min(tablasCortasSobrantes / 6,
+                   min(ganchosPequenosSobrantes / 12,
+                       min(ganchosGrandesSobrantes / 2, tornillosSobrantes / 14))));
+}
+
+// Función para mostrar los resultados cuando el pedido es posible
+void mostrarResultadoPositivo(int estantesPedidos, int estantesPosiblesConSobrante) {
+    cout << "Es posible realizar los " << estantesPedidos << " estantes pedidos." << endl;
+    if (estantesPosiblesConSobrante > 0) {
+        cout << "Con el material sobrante puedes construir " << estantesPosiblesConSobrante << " estantes." << endl;
+    }
+}
+
+// Función para mostrar los resultados cuando el pedido no es posible
+void mostrarResultadoNegativo(int faltaTablasLargas, int faltaTablasCortas, int faltaGanchosPequenos,
+                               int faltaGanchosGrandes, int faltaTornillos) {
+    cout << "No es posible cubrir el pedido porque faltan: "
+         << faltaTablasLargas << " tablas largas, "
+         << faltaTablasCortas << " tablas cortas, "
+         << faltaGanchosPequenos << " ganchos pequeños, "
+         << faltaGanchosGrandes << " ganchos grandes, "
+         << faltaTornillos << " tornillos." << endl;
+}
+
+
+    }
+
+    return 0;
+}
+
+
+
+8.
+Se debe cambiar:
+1. Entrada de los materiales y la cantidad del pedido:solicitamos al usuario ingresar las cantidades de materiales disponibles y la cantidad de estantes que se desean construir.
+2. Reemplazo de los valores fijos: Los valores fijos para el material disponible y el número de estantes pedidos deben ser ingresados por el usuario.
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Variables para el material disponible
+    int tablasLargas, tablasCortas, ganchosPequenos, ganchosGrandes, tornillos;
+    
+    // Entrada de datos: cantidad de material disponible
+    cout << "Ingresa la cantidad de tablas largas en almacén: ";
+    cin >> tablasLargas;
+    cout << "Ingresa la cantidad de tablas cortas en almacén: ";
+    cin >> tablasCortas;
+    cout << "Ingresa la cantidad de ganchos pequeños en almacén: ";
+    cin >> ganchosPequenos;
+    cout << "Ingresa la cantidad de ganchos grandes en almacén: ";
+    cin >> ganchosGrandes;
+    cout << "Ingresa la cantidad de tornillos en almacén: ";
+    cin >> tornillos;
+    
+    // Entrada de datos: cantidad de estantes que Juan desea construir
+    int estantesPedidos;
+    cout << "Ingresa la cantidad de estantes a construir: ";
+    cin >> estantesPedidos;
+
+    // Variables para almacenar el material necesario para los estantes pedidos
+    int totalTablasLargas, totalTablasCortas, totalGanchosPequenos, totalGanchosGrandes, totalTornillos;
+    
+    // Calcular el material necesario para los estantes pedidos
+    calcularMaterialNecesario(estantesPedidos, totalTablasLargas, totalTablasCortas, 
+                               totalGanchosPequenos, totalGanchosGrandes, totalTornillos);
+    
+    // Verificar si hay suficiente material
+    if (verificarMaterialSuficiente(tablasLargas, tablasCortas, ganchosPequenos, ganchosGrandes, 
+                                    tornillos, totalTablasLargas, totalTablasCortas, 
+                                    totalGanchosPequenos, totalGanchosGrandes, totalTornillos)) {
+        // Si hay suficiente material, calcular el material sobrante y cuántos estantes adicionales se pueden construir
+        int estantesPosiblesConSobrante = calcularEstantesSobrantes(tablasLargas, tablasCortas, ganchosPequenos, 
+                                                                   ganchosGrandes, tornillos, totalTablasLargas,
+                                                                   totalTablasCortas, totalGanchosPequenos, 
+                                                                   totalGanchosGrandes, totalTornillos);
+        // Mostrar resultado positivo
+        mostrarResultadoPositivo(estantesPedidos, estantesPosiblesConSobrante);
+    } else {
+        // Calcular cuánto material falta
+        int faltaTablasLargas = max(0, totalTablasLargas - tablasLargas);
+        int faltaTablasCortas = max(0, totalTablasCortas - tablasCortas);
+        int faltaGanchosPequenos = max(0, totalGanchosPequenos - ganchosPequenos);
+        int faltaGanchosGrandes = max(0, totalGanchosGrandes - ganchosGrandes);
+        int faltaTornillos = max(0, totalTornillos - tornillos);
+        
+        // Mostrar resultado negativo
+        mostrarResultadoNegativo(faltaTablasLargas, faltaTablasCortas, faltaGanchosPequenos, 
+                                  faltaGanchosGrandes, faltaTornillos);
+
+// Función para calcular el material necesario para los estantes
+void calcularMaterialNecesario(int estantesPedidos, int& totalTablasLargas, int& totalTablasCortas, 
+                                int& totalGanchosPequenos, int& totalGanchosGrandes, int& totalTornillos) {
+    totalTablasLargas = 4 * estantesPedidos;
+    totalTablasCortas = 6 * estantesPedidos;
+    totalGanchosPequenos = 12 * estantesPedidos;
+    totalGanchosGrandes = 2 * estantesPedidos;
+    totalTornillos = 14 * estantesPedidos;
+}
+
+// Función para verificar si hay suficiente material
+bool verificarMaterialSuficiente(int tablasLargas, int tablasCortas, int ganchosPequenos, 
+                                 int ganchosGrandes, int tornillos, int totalTablasLargas,
+                                 int totalTablasCortas, int totalGanchosPequenos, 
+                                 int totalGanchosGrandes, int totalTornillos) {
+    return (tablasLargas >= totalTablasLargas && tablasCortas >= totalTablasCortas &&
+            ganchosPequenos >= totalGanchosPequenos && ganchosGrandes >= totalGanchosGrandes &&
+            tornillos >= totalTornillos);
+}
+
+// Función para calcular el material sobrante y cuántos estantes adicionales se pueden construir
+int calcularEstantesSobrantes(int tablasLargas, int tablasCortas, int ganchosPequenos, 
+                               int ganchosGrandes, int tornillos, int totalTablasLargas,
+                               int totalTablasCortas, int totalGanchosPequenos, 
+                               int totalGanchosGrandes, int totalTornillos) {
+    int tablasLargasSobrantes = tablasLargas - totalTablasLargas;
+    int tablasCortasSobrantes = tablasCortas - totalTablasCortas;
+    int ganchosPequenosSobrantes = ganchosPequenos - totalGanchosPequenos;
+    int ganchosGrandesSobrantes = ganchosGrandes - totalGanchosGrandes;
+    int tornillosSobrantes = tornillos - totalTornillos;
+
+    return min(tablasLargasSobrantes / 4,
+               min(tablasCortasSobrantes / 6,
+                   min(ganchosPequenosSobrantes / 12,
+                       min(ganchosGrandesSobrantes / 2, tornillosSobrantes / 14))));
+}
+
+// Función para mostrar los resultados cuando el pedido es posible
+void mostrarResultadoPositivo(int estantesPedidos, int estantesPosiblesConSobrante) {
+    cout << "Es posible realizar los " << estantesPedidos << " estantes pedidos." << endl;
+    if (estantesPosiblesConSobrante > 0) {
+        cout << "Con el material sobrante puedes construir " << estantesPosiblesConSobrante << " estantes." << endl;
+    }
+}
+
+// Función para mostrar los resultados cuando el pedido no es posible
+void mostrarResultadoNegativo(int faltaTablasLargas, int faltaTablasCortas, int faltaGanchosPequenos,
+                               int faltaGanchosGrandes, int faltaTornillos) {
+    cout << "No es posible cubrir el pedido porque faltan: "
+         << faltaTablasLargas << " tablas largas, "
+         << faltaTablasCortas << " tablas cortas, "
+         << faltaGanchosPequenos << " ganchos pequeños, "
+         << faltaGanchosGrandes << " ganchos grandes, "
+         << faltaTornillos << " tornillos." << endl;
+}
+
+
+    }
+
+    return 0;
+}
+
+
+9.
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// Procedimiento principal
+void procesarEnvio() {
+    int numPaquetes;
+    vector<double> pesos;
+    
+    // Ingresar los datos de los paquetes
+    ingresarDatos(numPaquetes, pesos);
+
+    // Calcular el costo por enviar los paquetes separados
+    double costoSeparado = calcularCostoSeparado(pesos);
+    if (costoSeparado == -1) {
+        return;  // Si algún paquete tiene un peso fuera de rango, terminamos el proceso
+    }
+
+    // Calcular el costo por enviar todos los paquetes juntos
+    double costoConjunto = calcularCostoConjunto(pesos);
+    if (costoConjunto == -1) {
+        return;  // Si el peso total tiene un tipo de envío especial, terminamos el proceso
+    }
+
+    // Mostrar los resultados
+    cout << "\nCosto por enviar los paquetes individualmente: " << costoSeparado << " Bs" << endl;
+    cout << "Costo por enviar todos los paquetes juntos: " << costoConjunto << " Bs" << endl;
+
+    // Decidir la opción más económica
+    if (costoSeparado < costoConjunto) {
+        cout << "\nEs más conveniente enviar los paquetes individualmente." << endl;
+    } else {
+        cout << "\nEs más conveniente enviar todos los paquetes juntos." << endl;
+    }
+}
+
+int main() {
+    // Ejecutamos el procedimiento principal
+    procesarEnvio();
+    return 0;
+}
+
+
+// Función para calcular la tarifa de envío según el peso
+double calcularTarifa(double peso) {
+    if (peso >= 0 && peso <= 20) return 3.5;
+    if (peso >= 21 && peso <= 50) return 4.5;
+    if (peso >= 51 && peso <= 100) return 5.8;
+    if (peso >= 101 && peso <= 200) return 7.0;
+    if (peso >= 201 && peso <= 350) return 8.0;
+    if (peso >= 351 && peso <= 500) return 9.0;
+    if (peso >= 501 && peso <= 1000) return 12.0;
+    if (peso >= 1001 && peso <= 2000) return 17.0;
+    if (peso >= 2001 && peso <= 3000) return 21.0;
+    return -1;  // Si el peso está fuera del rango, devuelve -1 (tipo de envío especial)
+}
+
+// Procedimiento para recibir los datos de los paquetes y almacenarlos
+void ingresarDatos(int& numPaquetes, vector<double>& pesos) {
+    cout << "Ingrese el número de paquetes a enviar: ";
+    cin >> numPaquetes;
+    
+    // Ingresamos el peso de cada paquete
+    for (int i = 0; i < numPaquetes; ++i) {
+        double peso;
+        cout << "Ingrese el peso del paquete " << i + 1 << " en gramos: ";
+        cin >> peso;
+        pesos.push_back(peso);  // Almacenamos el peso en el vector
+    }
+}
+
+// Función para calcular el costo de enviar los paquetes por separado
+double calcularCostoSeparado(const vector<double>& pesos) {
+    double costoTotal = 0;
+
+    for (double peso : pesos) {
+        double tarifa = calcularTarifa(peso);
+        if (tarifa == -1) {
+            cout << "El paquete con peso " << peso << " gramos tiene un tipo de envío especial." << endl;
+            return -1;  // Si algún paquete tiene peso fuera del rango, se devuelve -1
+        }
+        costoTotal += tarifa;
+    }
+
+    return costoTotal;
+}
+
+// Función para calcular el costo de enviar los paquetes juntos
+double calcularCostoConjunto(const vector<double>& pesos) {
+    double pesoTotal = 0;
+
+    // Sumar todos los pesos de los paquetes
+    for (double peso : pesos) {
+        pesoTotal += peso;
+    }
+
+    double tarifaTotal = calcularTarifa(pesoTotal);
+    if (tarifaTotal == -1) {
+        cout << "El peso total de los paquetes es " << pesoTotal << " gramos, que tiene un tipo de envío especial." << endl;
+        return -1;  // Si el peso total está fuera del rango
+    }
+
+    return tarifaTotal;
+}
